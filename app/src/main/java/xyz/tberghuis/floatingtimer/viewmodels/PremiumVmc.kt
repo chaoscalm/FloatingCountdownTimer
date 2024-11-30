@@ -10,8 +10,8 @@ import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import xyz.tberghuis.floatingtimer.provideBillingClientWrapper
-import xyz.tberghuis.floatingtimer.providePreferencesRepository
+import xyz.tberghuis.floatingtimer.data.preferencesRepository
+import xyz.tberghuis.floatingtimer.iap.billingClientWrapper
 
 // is there a better pattern to share code multiple viewmodels?
 // doitwrong
@@ -20,9 +20,9 @@ class PremiumVmc(private val application: Application, private val scope: Corout
   var premiumPriceText by mutableStateOf("")
     private set
 
-  private val preferences = application.providePreferencesRepository()
+  private val preferences = application.preferencesRepository
 
-  private val billingClientWrapper = application.provideBillingClientWrapper()
+  private val billingClientWrapper = application.billingClientWrapper
 
   init {
     updateHaloColorChangePriceText()

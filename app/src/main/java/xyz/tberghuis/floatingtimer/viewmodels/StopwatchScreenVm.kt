@@ -12,23 +12,23 @@ import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import xyz.tberghuis.floatingtimer.DEFAULT_HALO_COLOR
-import xyz.tberghuis.floatingtimer.MainApplication
 import xyz.tberghuis.floatingtimer.composables.BackgroundTransCheckboxVm
 import xyz.tberghuis.floatingtimer.data.SavedStopwatch
 import xyz.tberghuis.floatingtimer.data.SavedTimer
+import xyz.tberghuis.floatingtimer.data.appDatabase
+import xyz.tberghuis.floatingtimer.data.preferencesRepository
 import xyz.tberghuis.floatingtimer.logd
-import xyz.tberghuis.floatingtimer.provideDatabase
-import xyz.tberghuis.floatingtimer.providePreferencesRepository
+import xyz.tberghuis.floatingtimer.service.boundFloatingServiceProvider
 
 class StopwatchScreenVm(
   private val application: Application,
 ) : AndroidViewModel(application), TimerShapeChoiceVm, BackgroundTransCheckboxVm {
-  private val savedStopwatchDao = application.provideDatabase().savedStopwatchDao()
+  private val savedStopwatchDao = application.appDatabase.savedStopwatchDao()
   var showDeleteDialog by mutableStateOf<SavedStopwatch?>(null)
 
-  private val preferencesRepository = application.providePreferencesRepository()
+  private val preferencesRepository = application.preferencesRepository
   val premiumVmc = PremiumVmc(application, viewModelScope)
-  private val boundFloatingService = (application as MainApplication).boundFloatingService
+  private val boundFloatingService = application.boundFloatingServiceProvider
 
   var haloColor by mutableStateOf(DEFAULT_HALO_COLOR)
 

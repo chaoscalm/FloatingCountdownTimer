@@ -105,4 +105,26 @@ class PreferencesRepository(private val dataStore: DataStore<Preferences>) {
       preferences[stringPreferencesKey("alarm_ringtone_uri")] = uri
     }
   }
+
+  val loopingFlow: Flow<Boolean> = dataStore.data.map { preferences ->
+    preferences[booleanPreferencesKey("looping")] ?: true
+  }
+
+  suspend fun updateLooping(looping: Boolean) {
+    dataStore.edit { preferences ->
+      preferences[booleanPreferencesKey("looping")] = looping
+    }
+  }
+
+  companion object {
+    @Volatile
+    private var instance: PreferencesRepository? = null
+    fun getInstance(context: Context) =
+      instance ?: synchronized(this) {
+        instance ?: PreferencesRepository(context.dataStore).also { instance = it }
+      }
+  }
 }
+
+val Context.preferencesRepository : PreferencesRepository
+  get() = PreferencesRepository.getInstance(this)

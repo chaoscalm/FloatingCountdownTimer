@@ -194,4 +194,17 @@ class BillingClientWrapper(
       bc.queryProductDetailsAsync(params, productDetailsResponseListener)
     }
   }
+
+  companion object {
+    @Volatile
+    private var instance: BillingClientWrapper? = null
+    fun getInstance(context: Context) =
+      instance ?: synchronized(this) {
+        instance ?: BillingClientWrapper(context)
+          .also { instance = it }
+      }
+  }
 }
+
+val Context.billingClientWrapper: BillingClientWrapper
+  get() = BillingClientWrapper.getInstance(this)

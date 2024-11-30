@@ -14,23 +14,23 @@ import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import xyz.tberghuis.floatingtimer.DEFAULT_HALO_COLOR
-import xyz.tberghuis.floatingtimer.MainApplication
 import xyz.tberghuis.floatingtimer.R
 import xyz.tberghuis.floatingtimer.composables.BackgroundTransCheckboxVm
 import xyz.tberghuis.floatingtimer.data.SavedCountdown
 import xyz.tberghuis.floatingtimer.data.SavedTimer
+import xyz.tberghuis.floatingtimer.data.appDatabase
+import xyz.tberghuis.floatingtimer.data.preferencesRepository
 import xyz.tberghuis.floatingtimer.logd
-import xyz.tberghuis.floatingtimer.provideDatabase
-import xyz.tberghuis.floatingtimer.providePreferencesRepository
+import xyz.tberghuis.floatingtimer.service.boundFloatingServiceProvider
 
 class CountdownScreenVm(
   private val application: Application,
 //  private val state: SavedStateHandle
 ) : AndroidViewModel(application), TimerShapeChoiceVm, BackgroundTransCheckboxVm {
-  private val savedCountdownDao = application.provideDatabase().savedCountdownDao()
+  private val savedCountdownDao = application.appDatabase.savedCountdownDao()
   var showDeleteDialog by mutableStateOf<SavedCountdown?>(null)
 
-  private val preferencesRepository = application.providePreferencesRepository()
+  private val preferencesRepository = application.preferencesRepository
 
   val currentRingtoneVmc =
     CurrentRingtoneVmc(preferencesRepository.alarmRingtoneUriFlow, viewModelScope, application)
@@ -43,7 +43,7 @@ class CountdownScreenVm(
 
   // future.txt refactor premiumVmc into sharedVm
   val premiumVmc = PremiumVmc(application, viewModelScope)
-  private val boundFloatingService = (application as MainApplication).boundFloatingService
+  private val boundFloatingService = application.boundFloatingServiceProvider
 
   var haloColor by mutableStateOf(DEFAULT_HALO_COLOR)
 
