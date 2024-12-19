@@ -42,6 +42,8 @@ class FloatingService : LifecycleService(), SavedStateRegistryOwner {
   lateinit var alarmController: FtAlarmController
   lateinit var overlayController: OverlayController
 
+  lateinit var ftWindowManager: FtWindowManager
+
   private val savedStateRegistryController = SavedStateRegistryController.create(this)
 
   override val savedStateRegistry: SavedStateRegistry
@@ -65,6 +67,8 @@ class FloatingService : LifecycleService(), SavedStateRegistryOwner {
 
     savedStateRegistryController.performAttach()
     savedStateRegistryController.performRestore(null)
+
+    ftWindowManager = FtWindowManager(this)
 
     alarmController = FtAlarmController(this)
     overlayController = OverlayController(this)

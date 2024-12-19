@@ -13,6 +13,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Circle
+import androidx.compose.material.icons.filled.OpenInBrowser
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -36,6 +37,8 @@ import xyz.tberghuis.floatingtimer.DEFAULT_HALO_COLOR
 import xyz.tberghuis.floatingtimer.LocalNavController
 import xyz.tberghuis.floatingtimer.R
 import xyz.tberghuis.floatingtimer.logd
+import xyz.tberghuis.floatingtimer.openGithubIssues
+import xyz.tberghuis.floatingtimer.openPlayStorePage
 import xyz.tberghuis.floatingtimer.viewmodels.SettingsScreenVm
 import xyz.tberghuis.floatingtimer.viewmodels.SharedVm
 
@@ -74,6 +77,7 @@ fun SettingsScreenContent(
   val looping by vm.loopingFlow.collectAsState(true)
   val haloColour by vm.haloColourFlow.collectAsState(DEFAULT_HALO_COLOR)
   val purchased by vm.haloColourPurchasedFlow.collectAsState(null)
+  val context = LocalContext.current
 
   Column(
     modifier = Modifier
@@ -175,5 +179,44 @@ fun SettingsScreenContent(
       modifier = Modifier.clickable {
         sharedVm.saveTimerPositions()
       })
+
+
+
+
+    HorizontalDivider()
+    Text(
+      stringResource(R.string.links),
+      modifier = Modifier
+        .fillMaxWidth()
+        .padding(top = 16.dp)
+        .padding(horizontal = 16.dp),
+      color = MaterialTheme.colorScheme.primary,
+    )
+    ListItem(
+      headlineContent = { Text(stringResource(R.string.play_store)) },
+      modifier = Modifier.clickable {
+        context.openPlayStorePage()
+      },
+      supportingContent = { Text(stringResource(R.string.leave_a_review)) },
+      trailingContent = {
+        Icon(
+          Icons.Default.OpenInBrowser,
+          contentDescription = "open",
+        )
+      },
+    )
+    ListItem(
+      headlineContent = { Text(stringResource(R.string.github_issues)) },
+      modifier = Modifier.clickable {
+        context.openGithubIssues()
+      },
+      supportingContent = { Text(stringResource(R.string.report_a_bug_or_request_a_feature)) },
+      trailingContent = {
+        Icon(
+          Icons.Default.OpenInBrowser,
+          contentDescription = "open",
+        )
+      }
+    )
   }
 }
