@@ -14,8 +14,8 @@ android {
     applicationId = "xyz.tberghuis.floatingtimer"
     minSdk = 26
     targetSdk = 34
-    versionCode = 73
-    versionName = "1.40.1"
+    versionCode = 75
+    versionName = "1.40.3"
 
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     vectorDrawables {
@@ -30,9 +30,10 @@ android {
       buildConfigField("Boolean", "DEFAULT_PURCHASED", "false")
     }
     debug {
-      buildConfigField("Boolean", "DEFAULT_PURCHASED", "false")
       // for taking screenshots, use airplane mode
-      // buildConfigField("Boolean", "DEFAULT_PURCHASED", "true")
+      // todo use environment variable
+      // buildConfigField("Boolean", "DEFAULT_PURCHASED", "false")
+      buildConfigField("Boolean", "DEFAULT_PURCHASED", "true")
     }
     create("unlockTmp") {
       initWith(getByName("debug"))
