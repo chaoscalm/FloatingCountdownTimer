@@ -8,21 +8,33 @@ import androidx.lifecycle.setViewTreeLifecycleOwner
 import androidx.savedstate.setViewTreeSavedStateRegistryOwner
 import xyz.tberghuis.floatingtimer.logd
 
-class TimerViewHolder(val service: FloatingService, widthPx: Int, heightPx: Int, x: Int? = null, y: Int? = null) {
-  val params = WindowManager.LayoutParams(
-    widthPx,
-    heightPx,
-    x ?: 0,
-    y ?: 0,
-    WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
-    WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
-    PixelFormat.TRANSLUCENT
-  )
+class TimerViewHolder(
+  val service: FloatingService,
+  x: Int? = null,
+  y: Int? = null
+) {
+  val params = WindowManager.LayoutParams()
   val view = createComposeView(service)
 
   init {
-    params.gravity = Gravity.TOP or Gravity.LEFT
+    initParams(x, y)
     logd("TimerViewHolder params $params")
+  }
+
+  private fun initParams(
+    x: Int?,
+    y: Int?
+  ) {
+    params.x = x ?: 0
+    params.y = y ?: 0
+    params.width = WindowManager.LayoutParams.WRAP_CONTENT
+    params.height = WindowManager.LayoutParams.WRAP_CONTENT
+    params.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
+    params.flags =
+      WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+    params.format = PixelFormat.TRANSLUCENT
+    params.gravity = Gravity.TOP or Gravity.LEFT
+    logd("params x y ${params.x} ${params.y}")
   }
 }
 

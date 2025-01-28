@@ -20,9 +20,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import xyz.tberghuis.floatingtimer.ARC_WIDTH_NO_SCALE
-import xyz.tberghuis.floatingtimer.COUNTDOWN_TIMER_SIZE_NO_SCALE
 import xyz.tberghuis.floatingtimer.R
 import xyz.tberghuis.floatingtimer.TIMER_FONT_SIZE_NO_SCALE
+import xyz.tberghuis.floatingtimer.TIMER_PADDING_NO_SCALE
 import xyz.tberghuis.floatingtimer.data.SavedCountdown
 import xyz.tberghuis.floatingtimer.data.SavedStopwatch
 import xyz.tberghuis.floatingtimer.data.SavedTimer
@@ -61,7 +61,13 @@ fun <T : SavedTimer> ColumnScope.SavedTimersCard(
       savedTimers.forEach { savedTimer ->
         val c = Color(savedTimer.timerColor)
         val settingsTimerPreviewVmc =
-          SettingsTimerPreviewVmc(0f, c, savedTimer.timerShape, savedTimer.label, savedTimer.isBackgroundTransparent)
+          SettingsTimerPreviewVmc(
+            0f,
+            c,
+            savedTimer.timerShape,
+            savedTimer.label,
+            savedTimer.isBackgroundTransparent
+          )
         Box(
           modifier = Modifier
             .align(Alignment.CenterVertically)
@@ -78,14 +84,14 @@ fun <T : SavedTimer> ColumnScope.SavedTimersCard(
             is SavedStopwatch -> {
               StopwatchView(
                 isRunningStateFlow = null,
-                widthDp = COUNTDOWN_TIMER_SIZE_NO_SCALE,
                 arcWidth = ARC_WIDTH_NO_SCALE,
                 haloColor = Color(savedTimer.timerColor),
                 timeElapsed = 0,
                 fontSize = TIMER_FONT_SIZE_NO_SCALE,
                 timerShape = savedTimer.timerShape,
                 label = savedTimer.label,
-                isBackgroundTransparent = savedTimer.isBackgroundTransparent
+                isBackgroundTransparent = savedTimer.isBackgroundTransparent,
+                paddingTimerDisplay = TIMER_PADDING_NO_SCALE
               )
             }
           }

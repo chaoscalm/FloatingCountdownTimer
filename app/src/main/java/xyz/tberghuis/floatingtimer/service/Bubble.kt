@@ -5,94 +5,28 @@ import android.view.WindowManager
 import androidx.compose.ui.graphics.Color
 import kotlin.math.roundToInt
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.TextUnit
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
-import xyz.tberghuis.floatingtimer.ARC_WIDTH_NO_SCALE
-import xyz.tberghuis.floatingtimer.COUNTDOWN_TIMER_SIZE_NO_SCALE
-import xyz.tberghuis.floatingtimer.TIMER_FONT_SIZE_NO_SCALE
 import xyz.tberghuis.floatingtimer.data.SavedCountdown
 import xyz.tberghuis.floatingtimer.data.SavedStopwatch
 import xyz.tberghuis.floatingtimer.data.SavedTimer
 import xyz.tberghuis.floatingtimer.data.appDatabase
 
-// future data class implements this, use composition over inheritance
-// make update method a single method interface, does calcs and returns copy instance
-
-// state that is static for lifetime of bubble goes here
-interface BubbleProperties {
-  val widthDp: Dp
-  val heightDp: Dp
-  val arcWidth: Dp
-  val fontSize: TextUnit
-  val haloColor: Color
-  val timerShape: String
-  val label: String?
-  val isBackgroundTransparent: Boolean
-
-  companion object {
-    fun calcCountdownTimerSizeDp(scaleFactor: Float) =
-      COUNTDOWN_TIMER_SIZE_NO_SCALE * (scaleFactor + 1)
-
-//    fun calcRectHeightDp(scaleFactor: Float): Dp {
-//      // y= mx + b
-//      // m = 22, b=50
-//      return (RECT_TIMER_HEIGHT_MAX_SCALE - RECT_TIMER_HEIGHT_NO_SCALE) * scaleFactor + RECT_TIMER_HEIGHT_NO_SCALE
-//    }
-
-    fun calcArcWidth(scaleFactor: Float) = ARC_WIDTH_NO_SCALE * (0.9f * scaleFactor + 1)
-    fun calcFontSize(scaleFactor: Float) = TIMER_FONT_SIZE_NO_SCALE * (1.2 * scaleFactor + 1)
-  }
-}
-
 abstract class Bubble(
   private val service: FloatingService,
   bubbleSizeScaleFactor: Float,
   override val haloColor: Color,
-  final override val timerShape: String,
-  final override val label: String? = null,
-  final override val isBackgroundTransparent: Boolean,
-  // todo rename SavedTimer, SavedBubble
+  override val timerShape: String,
+  override val label: String? = null,
+  override val isBackgroundTransparent: Boolean,
   private var savedTimer: SavedTimer? = null
 ) : BubbleProperties {
-  final override val widthDp = when (timerShape) {
-    "label", "rectangle" -> {
-      Dp.Unspecified
-    }
-
-    "circle" -> {
-      BubbleProperties.calcCountdownTimerSizeDp(bubbleSizeScaleFactor)
-    }
-
-    else -> {
-      throw RuntimeException("invalid timer shape")
-    }
-  }
-
-  final override val heightDp = when (timerShape) {
-    "circle" -> {
-      BubbleProperties.calcCountdownTimerSizeDp(bubbleSizeScaleFactor)
-    }
-
-    "label", "rectangle" -> {
-      Dp.Unspecified
-    }
-
-    else -> {
-      throw RuntimeException("invalid timer shape")
-    }
-  }
-
   override val arcWidth = BubbleProperties.calcArcWidth(bubbleSizeScaleFactor)
   override val fontSize = BubbleProperties.calcFontSize(bubbleSizeScaleFactor)
-  val viewHolder: TimerViewHolder
+  override val paddingTimerDisplay =
+    BubbleProperties.calcTimerDisplayPadding(bubbleSizeScaleFactor)
 
-  init {
-    val widthPx: Int = dimensionDpToPx(widthDp, service.resources.displayMetrics.density)
-    val heightPx: Int = dimensionDpToPx(heightDp, service.resources.displayMetrics.density)
-    viewHolder =
-      TimerViewHolder(service, widthPx, heightPx, savedTimer?.positionX, savedTimer?.positionY)
-  }
+  val viewHolder = TimerViewHolder(service, savedTimer?.positionX, savedTimer?.positionY)
 
   open fun exit() {
     try {

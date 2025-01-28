@@ -34,6 +34,7 @@ fun TimerText(
         text,
         fontSize = fontSize,
         fontFamily = FontFamily.Default,
+        softWrap = false,
         maxLines = 1,
         style = LocalTextStyle.current.copy(
           color = Color.Black,
@@ -67,30 +68,16 @@ fun OutlinedTextWithShadow(
     Text(
       text = text,
       fontFamily = FontFamily.Default,
+      softWrap = false,
       maxLines = 1,
       style = textStyleOutline,
     )
     Text(
       text = text,
       fontFamily = FontFamily.Default,
+      softWrap = false,
       maxLines = 1,
       style = textStyleFill,
     )
   }
-}
-
-@Composable
-fun TimeDisplay(
-  totalSeconds: Int,
-  fontSize: TextUnit,
-  isBackgroundTransparent: Boolean
-) {
-  val minutes = totalSeconds / 60
-  val seconds = totalSeconds % 60
-  val text = "${formatIntTimerDisplay(minutes)}:${formatIntTimerDisplay(seconds)}"
-  TimerText(
-    text,
-    fontSize,
-    isBackgroundTransparent
-  )
 }

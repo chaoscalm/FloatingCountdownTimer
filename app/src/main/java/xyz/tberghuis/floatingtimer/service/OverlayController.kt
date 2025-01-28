@@ -1,11 +1,9 @@
 package xyz.tberghuis.floatingtimer.service
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.util.Log
 import android.view.GestureDetector
 import android.view.MotionEvent
-import android.view.WindowManager
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.graphics.Color
@@ -35,7 +33,6 @@ class OverlayController(val service: FloatingService) {
     return bubbleSet.size
   }
 
-  // doitwrong
   fun addStopwatch(
     haloColor: Color,
     timerShape: String,
@@ -62,7 +59,7 @@ class OverlayController(val service: FloatingService) {
           StopwatchView(stopwatch)
         }
       }
-      // does coroutine dispatcher matter here???
+      // will crash if not Main dispatcher
       withContext(Main) {
         addBubble(stopwatch, stopwatchView)
       }
@@ -205,12 +202,13 @@ class OverlayController(val service: FloatingService) {
     viewHolder: TimerViewHolder,
   ) {
     val params = viewHolder.params
+    val view = viewHolder.view
     var x = params.x
     var y = params.y
     x = max(x, 0)
-    x = min(x, ScreenEz.safeWidth - params.width)
+    x = min(x, ScreenEz.safeWidth - view.width)
     y = max(y, 0)
-    y = min(y, ScreenEz.safeHeight - params.height)
+    y = min(y, ScreenEz.safeHeight - view.height)
     params.x = x
     params.y = y
     try {
@@ -248,7 +246,7 @@ class OverlayController(val service: FloatingService) {
   }
 }
 
-private fun calcIsBubbleHoverTrash(
+fun calcIsBubbleHoverTrash(
   timerView: ComposeView,
   trashView: ComposeView,
 ): Boolean {
@@ -256,7 +254,6 @@ private fun calcIsBubbleHoverTrash(
   val timerHeightPx = timerView.height
   val trashWidthPx = trashView.width
   val trashHeightPx = trashView.height
-
 
   val timerLocation = IntArray(2)
   timerView.getLocationOnScreen(timerLocation)
