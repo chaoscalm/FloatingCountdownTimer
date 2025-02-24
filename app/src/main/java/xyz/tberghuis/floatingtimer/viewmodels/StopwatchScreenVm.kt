@@ -26,12 +26,11 @@ class StopwatchScreenVm(
   private val application: Application,
 ) : AndroidViewModel(application), TimerShapeChoiceVm, BackgroundTransCheckboxVm {
   private val savedStopwatchDao = application.appDatabase.savedStopwatchDao()
-  var showDeleteDialog by mutableStateOf<SavedStopwatch?>(null)
-
   private val preferencesRepository = application.preferencesRepository
-  val premiumVmc = PremiumVmc(application, viewModelScope)
   private val boundFloatingService = application.boundFloatingServiceProvider
 
+  val savedTimerDialogVmc = SavedTimerDialogVmc(application, viewModelScope)
+  val premiumVmc = PremiumVmc(application, viewModelScope)
   var haloColor by mutableStateOf(DEFAULT_HALO_COLOR)
 
   override var timerShape by mutableStateOf("circle")
@@ -84,12 +83,6 @@ class StopwatchScreenVm(
     val label = if (timerShape == "label") label else null
     logd("stopwatchButtonClick isBackgroundTransparent $isBackgroundTransparent")
     addStopwatch(haloColor, timerShape, label, isBackgroundTransparent)
-  }
-
-  fun deleteSavedStopwatch(timer: SavedStopwatch) {
-    viewModelScope.launch(IO) {
-      savedStopwatchDao.delete(timer)
-    }
   }
 
   fun addToSaved() {

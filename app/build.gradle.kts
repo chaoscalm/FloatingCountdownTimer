@@ -14,8 +14,8 @@ android {
     applicationId = "xyz.tberghuis.floatingtimer"
     minSdk = 26
     targetSdk = 34
-    versionCode = 78
-    versionName = "1.42.0"
+    versionCode = 80
+    versionName = "1.43.1"
 
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     vectorDrawables {
@@ -31,21 +31,19 @@ android {
     }
     debug {
       // for taking screenshots, use airplane mode
-      // todo use environment variable
-      // buildConfigField("Boolean", "DEFAULT_PURCHASED", "false")
-      buildConfigField("Boolean", "DEFAULT_PURCHASED", "true")
+      // todo use .properties file gitignore
+      // clear billing client cache, run in airplane mode
+      // adb shell pm clear com.android.vending
+      buildConfigField("Boolean", "DEFAULT_PURCHASED", "false")
+      // buildConfigField("Boolean", "DEFAULT_PURCHASED", "true")
     }
+    // todo remove unlockTmp create product flavor .foss BillingClientWrapperImpl
     create("unlockTmp") {
       initWith(getByName("debug"))
       buildConfigField("Boolean", "DEFAULT_PURCHASED", "true")
       signingConfig = signingConfigs.getByName("debug")
     }
   }
-
-
-  // todo read
-  // https://stefma.medium.com/sourcecompatibility-targetcompatibility-and-jvm-toolchains-in-gradle-explained-d2c17c8cff7c
-  // use sdkman to manage java versions
   compileOptions {
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
@@ -59,6 +57,10 @@ android {
       excludes += "/META-INF/{AL2.0,LGPL2.1}"
     }
   }
+}
+
+kotlin {
+  jvmToolchain(17)
 }
 
 dependencies {

@@ -38,7 +38,8 @@ class OverlayController(val service: FloatingService) {
     timerShape: String,
     label: String?,
     isBackgroundTransparent: Boolean,
-    savedTimer: SavedTimer? = null
+    savedTimer: SavedTimer? = null,
+    start: Boolean = false
   ) {
     service.scope.launch {
       val bubbleScale = withContext(IO) {
@@ -52,7 +53,8 @@ class OverlayController(val service: FloatingService) {
           timerShape,
           label,
           isBackgroundTransparent,
-          savedTimer
+          savedTimer,
+          start
         )
       val stopwatchView = @Composable {
         CompositionLocalProvider(LocalTimerViewHolder provides stopwatch.viewHolder) {
@@ -72,7 +74,8 @@ class OverlayController(val service: FloatingService) {
     timerShape: String,
     label: String?,
     isBackgroundTransparent: Boolean,
-    savedTimer: SavedTimer? = null
+    savedTimer: SavedTimer? = null,
+    start: Boolean = false
   ) {
     service.scope.launch {
       val bubbleScale = withContext(IO) {
@@ -86,7 +89,8 @@ class OverlayController(val service: FloatingService) {
         timerShape,
         label,
         isBackgroundTransparent,
-        savedTimer
+        savedTimer,
+        start
       )
       val countdownView = @Composable {
         CompositionLocalProvider(LocalTimerViewHolder provides countdown.viewHolder) {

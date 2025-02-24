@@ -31,7 +31,6 @@
     <string name="stopwatch_timer_color">ストップウォッチの色</string>
     <string name="countdown_timer_color">カウントダウンの色</string>
     <string name="default_timer_color">デフォルトのタイマー色</string>
-    <string name="delete_saved_timer">保存されたタイマーを削除しますか？</string>
     <string name="delete">削除</string>
     <string name="circle">円</string>
     <string name="rectangle">長方形</string>
@@ -70,4 +69,18 @@
     <string name="github_issues">Github問題</string>
     <string name="report_a_bug_or_request_a_feature">バグの報告や機能のリクエスト</string>
     <string name="hours">時間</string>
+    <string name="timer_link">タイマーリンク</string>
+    <string name="auto_start">自動開始</string>
+    <string name="clipboard">クリップボード</string>
+    <string name="link">リンク</string>
+    <string name="open_app">アプリを開く</string>
+    <string name="close">閉じる</string>
+    <string name="timer_type">タイマータイプ</string>
+    <string name="result">結果</string>
+    <string name="invalid_link">無効なリンク</string>
+    <string name="need_premium_to_run_more_than_2_timers">3つ以上のタイマーを実行するにはプレミアムが必要です</string>
+    <string name="invalid_timer_type">無効なタイマータイプ</string>
+    <string name="stopwatch_timer_launched">ストップウォッチタイマーが起動しました</string>
+    <string name="countdown_timer_launched">カウントダウンタイマーが起動しました</string>
+    <string name="error_draw_over_other_apps_permission_not_granted">エラー、他のアプリの上に描画する権限が付与されていません</string>
 </resources>

@@ -31,7 +31,6 @@
     <string name="stopwatch_timer_color">Stoppuhrfarbe</string>
     <string name="countdown_timer_color">Countdown-Farbe</string>
     <string name="default_timer_color">Standard-Timerfarbe</string>
-    <string name="delete_saved_timer">Gespeicherten Timer löschen?</string>
     <string name="delete">Löschen</string>
     <string name="circle">Kreis</string>
     <string name="rectangle">Rechteck</string>
@@ -70,4 +69,18 @@
     <string name="github_issues">Github-Probleme</string>
     <string name="report_a_bug_or_request_a_feature">Einen Fehler melden oder eine Funktion anfragen</string>
     <string name="hours">Std.</string>
+    <string name="timer_link">Timer-Link</string>
+    <string name="auto_start">Automatischer Start</string>
+    <string name="clipboard">Zwischenablage</string>
+    <string name="link">Link</string>
+    <string name="open_app">App öffnen</string>
+    <string name="close">Schließen</string>
+    <string name="timer_type">Timer-Typ</string>
+    <string name="result">Ergebnis</string>
+    <string name="invalid_link">Ungültiger Link</string>
+    <string name="need_premium_to_run_more_than_2_timers">Premium erforderlich, um mehr als 2 Timer auszuführen</string>
+    <string name="invalid_timer_type">Ungültiger Timer-Typ</string>
+    <string name="stopwatch_timer_launched">Stoppuhr-Timer gestartet</string>
+    <string name="countdown_timer_launched">Countdown-Timer gestartet</string>
+    <string name="error_draw_over_other_apps_permission_not_granted">Fehler, Berechtigung zum Überzeichnen anderer Apps nicht erteilt</string>
 </resources>
