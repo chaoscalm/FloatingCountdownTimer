@@ -37,8 +37,25 @@
                 android:value="Floating timers to display on top of other apps" />
         </service>
 
+        <!--        <activity-->
+        <!--            android:name=".DeepLinkActivity"-->
+        <!--            android:exported="true"-->
+        <!--            android:noHistory="true"-->
+        <!--            android:theme="@style/Theme.FloatingTimer"-->
+        <!--            android:windowSoftInputMode="adjustResize">-->
+        <!--            <intent-filter>-->
+        <!--                <action android:name="android.nfc.action.NDEF_DISCOVERED" />-->
+        <!--                <action android:name="android.intent.action.VIEW" />-->
+
+        <!--                <category android:name="android.intent.category.DEFAULT" />-->
+        <!--                <category android:name="android.intent.category.BROWSABLE" />-->
+
+        <!--                <data android:scheme="floatingtimer" />-->
+        <!--            </intent-filter>-->
+        <!--        </activity>-->
+
         <activity
-            android:name=".DeepLinkActivity"
+            android:name=".tmp.tmp02.DeepLinkActivity"
             android:exported="true"
             android:noHistory="true"
             android:theme="@style/Theme.FloatingTimer"
