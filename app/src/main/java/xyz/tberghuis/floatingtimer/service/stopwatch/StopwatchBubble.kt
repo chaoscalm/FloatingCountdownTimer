@@ -15,7 +15,7 @@ import kotlin.concurrent.timerTask
 import kotlin.math.roundToInt
 
 class Stopwatch(
-  service: FloatingService,
+  service: xyz.tberghuis.floatingtimer.tmp.tmp02.FloatingService,
   bubbleSizeScaleFactor: Float,
   haloColor: Color,
   timerShape: String,

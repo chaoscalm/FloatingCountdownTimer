@@ -29,14 +29,20 @@
             </intent-filter>
         </activity>
 
+        <!--        <service-->
+        <!--            android:name=".service.FloatingService"-->
+        <!--            android:foregroundServiceType="specialUse">-->
+        <!--            <property-->
+        <!--                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"-->
+        <!--                android:value="Floating timers to display on top of other apps" />-->
+        <!--        </service>-->
         <service
-            android:name=".service.FloatingService"
+            android:name=".tmp.tmp02.FloatingService"
             android:foregroundServiceType="specialUse">
             <property
                 android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
                 android:value="Floating timers to display on top of other apps" />
         </service>
-
         <!--        <activity-->
         <!--            android:name=".DeepLinkActivity"-->
         <!--            android:exported="true"-->

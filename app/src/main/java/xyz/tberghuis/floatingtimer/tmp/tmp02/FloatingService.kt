@@ -1,4 +1,4 @@
-package xyz.tberghuis.floatingtimer.service
+package xyz.tberghuis.floatingtimer.tmp.tmp02
 
 import android.app.Application
 import android.app.ForegroundServiceStartNotAllowedException
@@ -32,6 +32,11 @@ import xyz.tberghuis.floatingtimer.R
 import xyz.tberghuis.floatingtimer.REQUEST_CODE_EXIT
 import xyz.tberghuis.floatingtimer.REQUEST_CODE_RESET
 import xyz.tberghuis.floatingtimer.logd
+import xyz.tberghuis.floatingtimer.service.BoundServiceProvider
+import xyz.tberghuis.floatingtimer.service.FtAlarmController
+import xyz.tberghuis.floatingtimer.service.FtWindowManager
+import xyz.tberghuis.floatingtimer.service.OverlayController
+import xyz.tberghuis.floatingtimer.service.ServiceBinder
 
 // https://stackoverflow.com/questions/76503237/how-to-use-jetpack-compose-in-service
 class FloatingService : Service() {
@@ -60,12 +65,11 @@ class FloatingService : Service() {
   override fun onCreate() {
     super.onCreate()
     ScreenEz.with(this.applicationContext)
-    
-// todo uncomment
-//    ftWindowManager = FtWindowManager(this)
-//    alarmController = FtAlarmController(this)
-//    overlayController = OverlayController(this)
-    
+
+    ftWindowManager = FtWindowManager(this)
+
+    alarmController = FtAlarmController(this)
+    overlayController = OverlayController(this)
     startInForeground()
   }
 

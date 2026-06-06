@@ -19,7 +19,7 @@ import xyz.tberghuis.floatingtimer.composables.Trash
 
 class TrashController(
 //  private val windowManager: WindowManager,
-  private val service: FloatingService,
+  private val service: xyz.tberghuis.floatingtimer.tmp.tmp02.FloatingService,
 ) {
   val isBubbleDragging = MutableStateFlow(false)
   val currentDraggingBubble = mutableStateOf<Bubble?>(null)

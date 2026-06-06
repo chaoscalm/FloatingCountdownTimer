@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 
 class FtWindowManager(
-  private val service: FloatingService
+  private val service: xyz.tberghuis.floatingtimer.tmp.tmp02.FloatingService
 ) {
   private val windowManager = service.getSystemService(Context.WINDOW_SERVICE) as WindowManager
 
