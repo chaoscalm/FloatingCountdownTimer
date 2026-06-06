@@ -87,7 +87,13 @@ class FloatingService : Service() {
           overlayController.resetAll()
         }
 
-        else -> {}
+        INTENT_COMMAND_DEEPLINK -> {
+          tmp_process_uri(intent.data!!)
+        }
+
+        else -> {
+          logd("INTENT_COMMAND ${intent.getStringExtra(INTENT_COMMAND)}")
+        }
       }
     }
     return START_NOT_STICKY
