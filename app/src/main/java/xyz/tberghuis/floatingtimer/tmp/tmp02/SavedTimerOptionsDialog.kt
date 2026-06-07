@@ -2,8 +2,12 @@ package xyz.tberghuis.floatingtimer.tmp.tmp02
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material.icons.Icons
@@ -52,15 +56,16 @@ fun SavedTimerOptionsDialog(
       color = MaterialTheme.colorScheme.surfaceVariant,
     ) {
       Column(
-        modifier = Modifier.padding(16.dp),
+        modifier = Modifier.padding(16.dp).width(IntrinsicSize.Max),
         verticalArrangement = Arrangement.spacedBy(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
+//        horizontalAlignment = Alignment.CenterHorizontally,
       ) {
         // todo add to strings.xml
         Text("Saved Timer Options")
 
 
         Row(
+//          modifier = Modifier.wid(),
           verticalAlignment = Alignment.CenterVertically,
         ) {
           Checkbox(
@@ -104,11 +109,17 @@ fun SavedTimerOptionsDialog(
           }
         }
 
+        Row(
+          modifier = Modifier.fillMaxWidth(),
+          horizontalArrangement = Arrangement.End,
+        ) {
+//          Spacer(modifier = Modifier.weight(1f))
+          TextButton(onClick = {
+            vmc.showOptionsDialog = null
+          }) {
+            Text(stringResource(R.string.cancel))
+          }
 
-        TextButton(onClick = {
-          vmc.showOptionsDialog = null
-        }) {
-          Text(stringResource(R.string.cancel))
         }
 
 
