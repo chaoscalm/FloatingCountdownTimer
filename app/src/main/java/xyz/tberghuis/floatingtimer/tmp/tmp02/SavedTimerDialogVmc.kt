@@ -24,7 +24,6 @@ class SavedTimerDialogVmc(
   // stores SavedCountdown or SavedStopwatch of saved timer long press
   // close dialog = null
   var showOptionsDialog by mutableStateOf<SavedTimer?>(null)
-  var showLinkDialog by mutableStateOf<SavedTimer?>(null)
 
   var start by mutableStateOf(true)
 
@@ -32,9 +31,9 @@ class SavedTimerDialogVmc(
     clipboardManager: ClipboardManager
   ) {
 //    assert(showLinkDialog != null)
-    val deepLink = showLinkDialog?.toDeepLink(start).toString()
+    val deepLink = showOptionsDialog?.toDeepLink(start).toString()
     clipboardManager.setText(AnnotatedString(deepLink))
-    showLinkDialog = null
+    showOptionsDialog = null
   }
 
   fun deleteSavedTimer() {

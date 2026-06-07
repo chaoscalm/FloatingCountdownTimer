@@ -22,57 +22,57 @@ import androidx.compose.ui.unit.dp
 import xyz.tberghuis.floatingtimer.R
 import xyz.tberghuis.floatingtimer.tmp.tmp02.SavedTimerDialogVmc
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun SavedTimerLinkDialog(
-  vmc: SavedTimerDialogVmc
-) {
-  if (vmc.showLinkDialog == null) {
-    return
-  }
-  val clipboardManager = LocalClipboardManager.current
-  BasicAlertDialog(
-    onDismissRequest = {
-      vmc.showLinkDialog = null
-    },
-    modifier = Modifier,
-  ) {
-    Surface(
-      modifier = Modifier
-        .wrapContentWidth()
-        .wrapContentHeight(),
-      shape = MaterialTheme.shapes.large,
-      color = MaterialTheme.colorScheme.surfaceVariant,
-    ) {
-      Column(
-        modifier = Modifier.padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-      ) {
-        Text(stringResource(R.string.timer_link))
-        Row(
-          verticalAlignment = Alignment.CenterVertically,
-        ) {
-          Checkbox(
-            checked = vmc.start,
-            onCheckedChange = { vmc.start = it }
-          )
-          Text(stringResource(R.string.auto_start))
-        }
-        Row(
-          modifier = Modifier,
-          horizontalArrangement = Arrangement.spacedBy(16.dp),
-        ) {
-          TextButton(onClick = { vmc.deepLinkToClipboard(clipboardManager) }) {
-            Text(stringResource(R.string.clipboard))
-          }
-          TextButton(onClick = {
-            vmc.showLinkDialog = null
-          }) {
-            Text(stringResource(R.string.cancel))
-          }
-        }
-      }
-    }
-  }
-}
+//@OptIn(ExperimentalMaterial3Api::class)
+//@Composable
+//fun SavedTimerLinkDialog(
+//  vmc: SavedTimerDialogVmc
+//) {
+//  if (vmc.showLinkDialog == null) {
+//    return
+//  }
+//  val clipboardManager = LocalClipboardManager.current
+//  BasicAlertDialog(
+//    onDismissRequest = {
+//      vmc.showLinkDialog = null
+//    },
+//    modifier = Modifier,
+//  ) {
+//    Surface(
+//      modifier = Modifier
+//        .wrapContentWidth()
+//        .wrapContentHeight(),
+//      shape = MaterialTheme.shapes.large,
+//      color = MaterialTheme.colorScheme.surfaceVariant,
+//    ) {
+//      Column(
+//        modifier = Modifier.padding(16.dp),
+//        verticalArrangement = Arrangement.spacedBy(16.dp),
+//        horizontalAlignment = Alignment.CenterHorizontally,
+//      ) {
+//        Text(stringResource(R.string.timer_link))
+//        Row(
+//          verticalAlignment = Alignment.CenterVertically,
+//        ) {
+//          Checkbox(
+//            checked = vmc.start,
+//            onCheckedChange = { vmc.start = it }
+//          )
+//          Text(stringResource(R.string.auto_start))
+//        }
+//        Row(
+//          modifier = Modifier,
+//          horizontalArrangement = Arrangement.spacedBy(16.dp),
+//        ) {
+//          TextButton(onClick = { vmc.deepLinkToClipboard(clipboardManager) }) {
+//            Text(stringResource(R.string.clipboard))
+//          }
+//          TextButton(onClick = {
+//            vmc.showLinkDialog = null
+//          }) {
+//            Text(stringResource(R.string.cancel))
+//          }
+//        }
+//      }
+//    }
+//  }
+//}
