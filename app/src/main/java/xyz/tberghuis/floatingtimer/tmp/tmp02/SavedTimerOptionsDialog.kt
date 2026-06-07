@@ -27,6 +27,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import xyz.tberghuis.floatingtimer.R
@@ -41,6 +42,7 @@ fun SavedTimerOptionsDialog(
   }
 
   val clipboardManager = LocalClipboardManager.current
+  val context = LocalContext.current
 
   BasicAlertDialog(
     onDismissRequest = {
@@ -56,7 +58,9 @@ fun SavedTimerOptionsDialog(
       color = MaterialTheme.colorScheme.surfaceVariant,
     ) {
       Column(
-        modifier = Modifier.padding(16.dp).width(IntrinsicSize.Max),
+        modifier = Modifier
+          .padding(16.dp)
+          .width(IntrinsicSize.Max),
         verticalArrangement = Arrangement.spacedBy(16.dp),
 //        horizontalAlignment = Alignment.CenterHorizontally,
       ) {
@@ -93,6 +97,8 @@ fun SavedTimerOptionsDialog(
 
           IconButton(
             onClick = {
+              add_to_homescreen(context, vmc.showOptionsDialog!!)
+              vmc.showOptionsDialog = null
             },
           ) {
             Icon(Icons.Default.PushPin, stringResource(R.string.add_to_home_screen))
