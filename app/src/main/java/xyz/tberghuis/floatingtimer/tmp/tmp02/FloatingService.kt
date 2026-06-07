@@ -88,7 +88,7 @@ class FloatingService : Service() {
         }
 
         INTENT_COMMAND_DEEPLINK -> {
-          tmp_process_uri(intent.data!!)
+          tmp_process_uri(intent.data!!, this)
         }
 
         else -> {
