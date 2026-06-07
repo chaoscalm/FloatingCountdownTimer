@@ -64,7 +64,7 @@
             android:name=".tmp.tmp02.DeepLinkActivity"
             android:exported="true"
             android:noHistory="true"
-            android:theme="@style/Theme.FloatingTimer"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
