@@ -16,44 +16,44 @@ import xyz.tberghuis.floatingtimer.data.SavedTimer
 import xyz.tberghuis.floatingtimer.data.appDatabase
 import xyz.tberghuis.floatingtimer.logd
 
-class SavedTimerDialogVmc(
-  private val application: Application,
-  private val scope: CoroutineScope
-) {
-  // stores SavedCountdown or SavedStopwatch of saved timer long press
-  // close dialog = null
-  var showOptionsDialog by mutableStateOf<SavedTimer?>(null)
-  var showLinkDialog by mutableStateOf<SavedTimer?>(null)
-
-  var start by mutableStateOf(true)
-
-  fun deepLinkToClipboard(
-    clipboardManager: ClipboardManager
-  ) {
-//    assert(showLinkDialog != null)
-    val deepLink = showLinkDialog?.toDeepLink(start).toString()
-    clipboardManager.setText(AnnotatedString(deepLink))
-    showLinkDialog = null
-  }
-
-  fun deleteSavedTimer() {
-    logd("deleteSavedTimer")
-    scope.launch(IO) {
-      showOptionsDialog?.let { timer ->
-        when (timer) {
-          is SavedStopwatch -> {
-            application.appDatabase.savedStopwatchDao().delete(timer)
-          }
-
-          is SavedCountdown -> {
-            application.appDatabase.savedCountdownDao().delete(timer)
-          }
-        }
-        showOptionsDialog = null
-      }
-    }
-  }
-}
+//class SavedTimerDialogVmc(
+//  private val application: Application,
+//  private val scope: CoroutineScope
+//) {
+//  // stores SavedCountdown or SavedStopwatch of saved timer long press
+//  // close dialog = null
+//  var showOptionsDialog by mutableStateOf<SavedTimer?>(null)
+//  var showLinkDialog by mutableStateOf<SavedTimer?>(null)
+//
+//  var start by mutableStateOf(true)
+//
+//  fun deepLinkToClipboard(
+//    clipboardManager: ClipboardManager
+//  ) {
+////    assert(showLinkDialog != null)
+//    val deepLink = showLinkDialog?.toDeepLink(start).toString()
+//    clipboardManager.setText(AnnotatedString(deepLink))
+//    showLinkDialog = null
+//  }
+//
+//  fun deleteSavedTimer() {
+//    logd("deleteSavedTimer")
+//    scope.launch(IO) {
+//      showOptionsDialog?.let { timer ->
+//        when (timer) {
+//          is SavedStopwatch -> {
+//            application.appDatabase.savedStopwatchDao().delete(timer)
+//          }
+//
+//          is SavedCountdown -> {
+//            application.appDatabase.savedCountdownDao().delete(timer)
+//          }
+//        }
+//        showOptionsDialog = null
+//      }
+//    }
+//  }
+//}
 
 fun SavedTimer.toDeepLink(start: Boolean): Uri {
   val type = when (this) {
