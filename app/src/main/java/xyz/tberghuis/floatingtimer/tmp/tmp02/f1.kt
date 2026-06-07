@@ -40,7 +40,7 @@ fun tmp_process_uri(data: Uri, fs: FloatingService) {
         }
 
         "countdown" -> {
-//          addCountdown(id.toInt(), start)
+          addCountdown(id.toInt(), start, fs)
         }
 
         else -> {
@@ -89,3 +89,23 @@ private suspend fun addStopwatch(id: Int, start: Boolean, fs: FloatingService) {
 }
 
 
+private suspend fun addCountdown(id: Int, start: Boolean, fs: FloatingService) {
+  logd("addCountdown")
+  val countdown = fs.application.appDatabase.savedCountdownDao().getById(id)
+
+  if (countdown == null) {
+//      uiResult = "countdown timer id=$id not found"
+    return
+  }
+
+  fs.overlayController.addCountdown(
+    durationSeconds = countdown.durationSeconds,
+    haloColor = Color(countdown.timerColor),
+    timerShape = countdown.timerShape,
+    label = countdown.label,
+    isBackgroundTransparent = countdown.isBackgroundTransparent,
+    savedTimer = countdown,
+    start = start
+  )
+
+}
