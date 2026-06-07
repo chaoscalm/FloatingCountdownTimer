@@ -11,6 +11,7 @@ import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Link
 import androidx.compose.material.icons.filled.PushPin
 import androidx.compose.material3.BasicAlertDialog
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -36,7 +37,7 @@ fun SavedTimerOptionsDialog(
   }
 
   val clipboardManager = LocalClipboardManager.current
-  
+
   BasicAlertDialog(
     onDismissRequest = {
       vmc.showOptionsDialog = null
@@ -57,6 +58,21 @@ fun SavedTimerOptionsDialog(
       ) {
         // todo add to strings.xml
         Text("Saved Timer Options")
+
+
+        Row(
+          verticalAlignment = Alignment.CenterVertically,
+        ) {
+          Checkbox(
+            checked = vmc.start,
+            onCheckedChange = { vmc.start = it }
+          )
+          Text(stringResource(R.string.auto_start))
+        }
+
+
+
+
         Row(
           modifier = Modifier,
           horizontalArrangement = Arrangement.spacedBy(16.dp),
