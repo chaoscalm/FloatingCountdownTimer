@@ -27,11 +27,11 @@ fun tmp_process_uri(data: Uri, fs: FloatingService) {
   }
 
   fs.scope.launch {
-    if (shouldShowPremiumDialogMultipleTimers(fs.application)) {
-      // todo
-//      uiResult = application.getString(R.string.need_premium_to_run_more_than_2_timers)
-      return@launch
-    }
+//    if (shouldShowPremiumDialogMultipleTimers(fs.application)) {
+//      // todo
+////      uiResult = application.getString(R.string.need_premium_to_run_more_than_2_timers)
+//      return@launch
+//    }
 
     try {
       when (timerType) {
