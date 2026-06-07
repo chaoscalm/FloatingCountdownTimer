@@ -25,60 +25,60 @@ import androidx.compose.ui.unit.dp
 import xyz.tberghuis.floatingtimer.R
 import xyz.tberghuis.floatingtimer.viewmodels.SavedTimerDialogVmc
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun SavedTimerOptionsDialog(
-  vmc: SavedTimerDialogVmc
-) {
-  if (vmc.showOptionsDialog == null) {
-    return
-  }
-
-  BasicAlertDialog(
-    onDismissRequest = {
-      vmc.showOptionsDialog = null
-    },
-    modifier = Modifier,
-  ) {
-    Surface(
-      modifier = Modifier
-        .wrapContentWidth()
-        .wrapContentHeight(),
-      shape = MaterialTheme.shapes.large,
-      color = MaterialTheme.colorScheme.surfaceVariant,
-    ) {
-      Column(
-        modifier = Modifier.padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-      ) {
-        Text("Saved Timer Options")
-        Row(
-          modifier = Modifier,
-          horizontalArrangement = Arrangement.spacedBy(16.dp),
-        ) {
-          IconButton(
-            onClick = {
-              vmc.showLinkDialog = vmc.showOptionsDialog
-              vmc.showOptionsDialog = null
-            },
-          ) {
-            Icon(Icons.Default.Link, stringResource(R.string.link))
-          }
-          IconButton(
-            onClick = {
-              vmc.deleteSavedTimer()
-            },
-          ) {
-            Icon(Icons.Default.Delete, stringResource(R.string.delete))
-          }
-          TextButton(onClick = {
-            vmc.showOptionsDialog = null
-          }) {
-            Text(stringResource(R.string.cancel))
-          }
-        }
-      }
-    }
-  }
-}
+//@OptIn(ExperimentalMaterial3Api::class)
+//@Composable
+//fun SavedTimerOptionsDialog(
+//  vmc: SavedTimerDialogVmc
+//) {
+//  if (vmc.showOptionsDialog == null) {
+//    return
+//  }
+//
+//  BasicAlertDialog(
+//    onDismissRequest = {
+//      vmc.showOptionsDialog = null
+//    },
+//    modifier = Modifier,
+//  ) {
+//    Surface(
+//      modifier = Modifier
+//        .wrapContentWidth()
+//        .wrapContentHeight(),
+//      shape = MaterialTheme.shapes.large,
+//      color = MaterialTheme.colorScheme.surfaceVariant,
+//    ) {
+//      Column(
+//        modifier = Modifier.padding(16.dp),
+//        verticalArrangement = Arrangement.spacedBy(16.dp),
+//        horizontalAlignment = Alignment.CenterHorizontally,
+//      ) {
+//        Text("Saved Timer Options")
+//        Row(
+//          modifier = Modifier,
+//          horizontalArrangement = Arrangement.spacedBy(16.dp),
+//        ) {
+//          IconButton(
+//            onClick = {
+//              vmc.showLinkDialog = vmc.showOptionsDialog
+//              vmc.showOptionsDialog = null
+//            },
+//          ) {
+//            Icon(Icons.Default.Link, stringResource(R.string.link))
+//          }
+//          IconButton(
+//            onClick = {
+//              vmc.deleteSavedTimer()
+//            },
+//          ) {
+//            Icon(Icons.Default.Delete, stringResource(R.string.delete))
+//          }
+//          TextButton(onClick = {
+//            vmc.showOptionsDialog = null
+//          }) {
+//            Text(stringResource(R.string.cancel))
+//          }
+//        }
+//      }
+//    }
+//  }
+//}
