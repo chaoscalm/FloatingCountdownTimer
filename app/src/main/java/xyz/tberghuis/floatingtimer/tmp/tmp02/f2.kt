@@ -37,10 +37,11 @@ suspend fun delete_saved_timer(savedTimer: SavedTimer, application: Application)
   logd("delete_saved_timer")
 
   val shortcutManager = application.getSystemService<ShortcutManager>()
-
   val shortcutId = savedTimer.toShortcutId()
-//  shortcutManager?.removeDynamicShortcuts(listOf(shortcutId))
-  shortcutManager?.disableShortcuts(listOf(shortcutId))
+  shortcutManager?.disableShortcuts(
+    listOf(shortcutId),
+    application.getString(R.string.this_timer_has_been_deleted)
+  )
 
   when (savedTimer) {
     is SavedStopwatch -> {
