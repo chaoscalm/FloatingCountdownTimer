@@ -41,7 +41,7 @@ interface SavedTimer {
           if (label != null) {
             append("$label - ${savedTimer.durationSeconds.toTimeDisplay()}")
           } else {
-            append("$label - ${savedTimer.durationSeconds.toTimeDisplay()}")
+            append(savedTimer.durationSeconds.toTimeDisplay())
           }
         }
 
