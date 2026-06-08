@@ -47,25 +47,15 @@ fun tmp_process_uri(data: Uri, fs: FloatingService) {
         }
 
         else -> {
-          // todo
-//          uiResult = application.getString(R.string.invalid_timer_type)
+          display_toast_message(fs, "invalid link ${data}")
+          stop_service_no_timers(fs)
         }
       }
     } catch (e: RuntimeException) {
-      // todo
-//      uiResult = "error $e"
+      display_toast_message(fs, "error ${e}")
+      stop_service_no_timers(fs)
     }
-
-//    delay(1000)
-//    val numTimers =
-//      application.boundFloatingServiceProvider.provideService().overlayController.getNumberOfBubbles()
-//    logd("numTimers $numTimers")
-//    if (numTimers == 0) {
-//      application.boundFloatingServiceProvider.provideService().stopSelf()
-//    }
   }
-
-
 }
 
 
@@ -74,8 +64,8 @@ private suspend fun addStopwatch(id: Int, start: Boolean, fs: FloatingService) {
     fs.application.appDatabase.savedStopwatchDao().getById(id)
 
   if (stopwatch == null) {
-    // todo
-//    uiResult = "stopwatch timer id=$id not found"
+    display_toast_message(fs, "saved stopwatch ${id} not found")
+    stop_service_no_timers(fs)
     return
   }
 
@@ -87,8 +77,6 @@ private suspend fun addStopwatch(id: Int, start: Boolean, fs: FloatingService) {
     savedTimer = stopwatch,
     start = start
   )
-
-//  uiResult = application.getString(R.string.stopwatch_timer_launched)
 }
 
 
@@ -97,7 +85,8 @@ private suspend fun addCountdown(id: Int, start: Boolean, fs: FloatingService) {
   val countdown = fs.application.appDatabase.savedCountdownDao().getById(id)
 
   if (countdown == null) {
-//      uiResult = "countdown timer id=$id not found"
+    display_toast_message(fs, "saved countdown ${id} not found")
+    stop_service_no_timers(fs)
     return
   }
 
@@ -110,7 +99,6 @@ private suspend fun addCountdown(id: Int, start: Boolean, fs: FloatingService) {
     savedTimer = countdown,
     start = start
   )
-
 }
 
 fun display_toast_message(context: Context, message: String) {
