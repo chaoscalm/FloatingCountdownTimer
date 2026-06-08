@@ -25,7 +25,8 @@ fun tmp_process_uri(data: Uri, fs: FloatingService) {
     return
   }
   if (timerType == null || id == null) {
-    // todo error Toast
+    display_toast_message(fs, "invalid link ${data}")
+    stop_service_no_timers(fs)
     return
   }
 
@@ -119,5 +120,13 @@ fun display_toast_message(context: Context, message: String) {
       message,
       Toast.LENGTH_LONG
     ).show()
+  }
+}
+
+fun stop_service_no_timers(fs: FloatingService) {
+  fs.scope.launch {
+    if (fs.overlayController.getNumberOfBubbles() == 0) {
+      fs.stopSelf()
+    }
   }
 }
