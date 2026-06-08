@@ -31,7 +31,7 @@ interface SavedStopwatchDao {
   fun insertAll(vararg timers: SavedStopwatch)
 
   @Delete
-  fun delete(timer: SavedStopwatch)
+  suspend fun delete(timer: SavedStopwatch)
 
   @Update
   fun update(timer: SavedStopwatch): Int

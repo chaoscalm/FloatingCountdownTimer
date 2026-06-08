@@ -40,15 +40,7 @@ class SavedTimerDialogVmc(
     logd("deleteSavedTimer")
     scope.launch(IO) {
       showOptionsDialog?.let { timer ->
-        when (timer) {
-          is SavedStopwatch -> {
-            application.appDatabase.savedStopwatchDao().delete(timer)
-          }
-
-          is SavedCountdown -> {
-            application.appDatabase.savedCountdownDao().delete(timer)
-          }
-        }
+        delete_saved_timer(timer, application)
         showOptionsDialog = null
       }
     }
