@@ -20,7 +20,8 @@ fun tmp_process_uri(data: Uri, fs: FloatingService) {
   val start = data.getBooleanQueryParameter("start", false)
 
   if (!Settings.canDrawOverlays(fs.application)) {
-// todo error Toast 
+    display_toast_message(fs, fs.getString(R.string.dialog_enable_overlay_permission))
+    fs.stopSelf()
     return
   }
   if (timerType == null || id == null) {
@@ -116,7 +117,7 @@ fun display_toast_message(context: Context, message: String) {
     Toast.makeText(
       context,
       message,
-      Toast.LENGTH_SHORT
+      Toast.LENGTH_LONG
     ).show()
   }
 }
