@@ -97,7 +97,7 @@ fun SavedTimerOptionsDialog(
 
           IconButton(
             onClick = {
-              add_to_homescreen(context, vmc.showOptionsDialog!!)
+              add_to_homescreen(context, vmc.showOptionsDialog!!, vmc.start)
               vmc.showOptionsDialog = null
             },
           ) {

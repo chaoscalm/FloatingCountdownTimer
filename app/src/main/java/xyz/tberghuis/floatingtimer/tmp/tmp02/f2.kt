@@ -8,36 +8,21 @@ import androidx.core.net.toUri
 import android.graphics.drawable.Icon
 import androidx.core.content.getSystemService
 import xyz.tberghuis.floatingtimer.R
+import xyz.tberghuis.floatingtimer.data.SavedCountdown
+import xyz.tberghuis.floatingtimer.data.SavedStopwatch
 import xyz.tberghuis.floatingtimer.data.SavedTimer
 import xyz.tberghuis.floatingtimer.viewmodels.toDeepLink
 
-fun add_to_homescreen(context: Context, savedTimer: SavedTimer) {
-  
-  
-  
-  val shortcut = ShortcutInfo.Builder(context, "id1")
-    .setShortLabel("Website")
-    .setLongLabel("Open the website")
-    .setIcon(Icon.createWithResource(context, R.drawable.ic_launcher_foreground))
-    .setIntent(
-//      intent
-      Intent(
-        Intent.ACTION_VIEW,
-//        savedTimer.toDeepLink()
-        "mydeeplink://mydeeplink/mypath?id=1".toUri()
-      )
-    )
-    .build()
 
+fun add_to_homescreen(context: Context, savedTimer: SavedTimer, autoStart: Boolean) {
 
+  val shortcut = savedTimer.toShortcutInfo(context, autoStart)
   val shortcutManager = context.getSystemService<ShortcutManager>()
 
-  if (shortcutManager!!.isRequestPinShortcutSupported) {
+  if (shortcutManager?.isRequestPinShortcutSupported == true) {
     shortcutManager.requestPinShortcut(
       shortcut,
       null
     )
   }
-
-
 }
