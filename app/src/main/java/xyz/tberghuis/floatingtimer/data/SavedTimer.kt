@@ -21,8 +21,6 @@ interface SavedTimer {
   fun toShortcutId() = buildString {
     when (this@SavedTimer) {
       is SavedCountdown -> {
-//        (this@SavedTimer as SavedCountdown).durationSeconds
-        this@SavedTimer.durationSeconds
         append("countdown")
       }
 
