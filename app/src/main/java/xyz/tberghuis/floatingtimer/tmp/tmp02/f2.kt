@@ -10,12 +10,14 @@ import android.graphics.drawable.Icon
 import androidx.core.content.getSystemService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import xyz.tberghuis.floatingtimer.R
 import xyz.tberghuis.floatingtimer.data.SavedCountdown
 import xyz.tberghuis.floatingtimer.data.SavedStopwatch
 import xyz.tberghuis.floatingtimer.data.SavedTimer
 import xyz.tberghuis.floatingtimer.data.appDatabase
+import xyz.tberghuis.floatingtimer.data.preferencesRepository
 import xyz.tberghuis.floatingtimer.logd
 import xyz.tberghuis.floatingtimer.viewmodels.toDeepLink
 
@@ -54,3 +56,19 @@ suspend fun delete_saved_timer(savedTimer: SavedTimer, application: Application)
   }
 
 }
+
+
+suspend fun should_Show_Premium_Dialog_Multiple_Timers(fs: FloatingService): Boolean {
+  val premiumPurchased =
+    fs.application.preferencesRepository.haloColourPurchasedFlow.first()
+  val numBubbles = fs.overlayController.getNumberOfBubbles()
+  return !premiumPurchased && numBubbles == 2
+}
+
+
+
+
+
+
+
+

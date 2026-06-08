@@ -1,11 +1,17 @@
 package xyz.tberghuis.floatingtimer.tmp.tmp02
 
 import android.app.Application
+import android.content.Context
 import android.net.Uri
+import android.os.Handler
+import android.os.Looper
 import xyz.tberghuis.floatingtimer.logd
 import android.provider.Settings
+import android.widget.Toast
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import kotlinx.coroutines.launch
+import xyz.tberghuis.floatingtimer.R
 import xyz.tberghuis.floatingtimer.data.SavedStopwatchDao
 import xyz.tberghuis.floatingtimer.data.appDatabase
 import xyz.tberghuis.floatingtimer.viewmodels.shouldShowPremiumDialogMultipleTimers
@@ -32,6 +38,13 @@ fun tmp_process_uri(data: Uri, fs: FloatingService) {
 ////      uiResult = application.getString(R.string.need_premium_to_run_more_than_2_timers)
 //      return@launch
 //    }
+
+
+    if (should_Show_Premium_Dialog_Multiple_Timers(fs)) {
+      display_toast_message(fs, fs.getString(R.string.premium_reason_multiple_timers))
+      return@launch
+    }
+
 
     try {
       when (timerType) {
@@ -108,4 +121,14 @@ private suspend fun addCountdown(id: Int, start: Boolean, fs: FloatingService) {
     start = start
   )
 
+}
+
+fun display_toast_message(context: Context, message: String) {
+  Handler(Looper.getMainLooper()).post {
+    Toast.makeText(
+      context,
+      message,
+      Toast.LENGTH_SHORT
+    ).show()
+  }
 }
