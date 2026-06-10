@@ -86,10 +86,7 @@ fun SavedTimerOptionsDialog(
           }
           IconButton(
             onClick = {
-
-              vmc.add_to_homescreen(vmc.showOptionsDialog!!, vmc.start)
-
-              vmc.showOptionsDialog = null
+              vmc.addToHomescreen(vmc.showOptionsDialog!!, vmc.start)
             },
           ) {
             Icon(Icons.Default.PushPin, stringResource(R.string.add_to_home_screen))

@@ -47,8 +47,7 @@ class SavedTimerDialogVmc(
     }
   }
 
-
-  fun add_to_homescreen(savedTimer: SavedTimer, autoStart: Boolean) {
+  fun addToHomescreen(savedTimer: SavedTimer, autoStart: Boolean) {
     val shortcut = savedTimer.toShortcutInfo(application, autoStart)
     val shortcutManager = application.getSystemService<ShortcutManager>()
     if (shortcutManager?.isRequestPinShortcutSupported == true) {
@@ -57,9 +56,8 @@ class SavedTimerDialogVmc(
         null
       )
     }
+    showOptionsDialog = null
   }
-
-
 }
 
 fun SavedTimer.toDeepLink(start: Boolean): Uri {
