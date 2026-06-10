@@ -21,6 +21,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import xyz.tberghuis.floatingtimer.FOREGROUND_SERVICE_NOTIFICATION_ID
 import xyz.tberghuis.floatingtimer.INTENT_COMMAND
+import xyz.tberghuis.floatingtimer.INTENT_COMMAND_DEEPLINK
 import xyz.tberghuis.floatingtimer.INTENT_COMMAND_EXIT
 import xyz.tberghuis.floatingtimer.INTENT_COMMAND_RESET
 import xyz.tberghuis.floatingtimer.MainActivity
