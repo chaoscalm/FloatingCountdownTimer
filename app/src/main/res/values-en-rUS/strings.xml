@@ -83,4 +83,7 @@
     <string name="stopwatch_timer_launched">stopwatch timer launched</string>
     <string name="countdown_timer_launched">countdown timer launched</string>
     <string name="error_draw_over_other_apps_permission_not_granted">error, draw over other apps permission not granted</string>
+    <string name="add_to_home_screen">Add to Home Screen</string>
+    <string name="this_timer_has_been_deleted">This timer has been deleted</string>
+    <string name="saved_timer_options">Saved Timer Options</string>
 </resources>
