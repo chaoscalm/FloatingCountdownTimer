@@ -42,7 +42,7 @@ class SavedTimerDialogVmc(
     logd("deleteSavedTimer")
     scope.launch(IO) {
       showOptionsDialog?.let { timer ->
-        delete_saved_timer(timer, application)
+        deleteSavedTimer(timer)
         showOptionsDialog = null
       }
     }
@@ -61,7 +61,7 @@ class SavedTimerDialogVmc(
   }
 
 
-  suspend fun delete_saved_timer(savedTimer: SavedTimer, application: Application) {
+  private suspend fun deleteSavedTimer(savedTimer: SavedTimer) {
     logd("delete_saved_timer")
     val shortcutManager = application.getSystemService<ShortcutManager>()
     val shortcutId = savedTimer.toShortcutId()
@@ -79,8 +79,6 @@ class SavedTimerDialogVmc(
       }
     }
   }
-
-
 }
 
 fun SavedTimer.toDeepLink(start: Boolean): Uri {
