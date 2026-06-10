@@ -11,7 +11,7 @@ import androidx.compose.ui.graphics.Color
 import kotlinx.coroutines.launch
 import xyz.tberghuis.floatingtimer.R
 import xyz.tberghuis.floatingtimer.data.appDatabase
-import xyz.tberghuis.floatingtimer.viewmodels.should_Show_Premium_Dialog_Multiple_Timers
+import xyz.tberghuis.floatingtimer.viewmodels.shouldShowPremiumDialogMultipleTimers
 
 fun processDeeplink(data: Uri, fs: FloatingService) {
   logd("processDeeplink data $data")
@@ -32,7 +32,7 @@ fun processDeeplink(data: Uri, fs: FloatingService) {
   }
 
   fs.scope.launch {
-    if (should_Show_Premium_Dialog_Multiple_Timers(fs)) {
+    if (shouldShowPremiumDialogMultipleTimers(fs)) {
       displayToastMessage(fs, fs.getString(R.string.premium_reason_multiple_timers))
       return@launch
     }
