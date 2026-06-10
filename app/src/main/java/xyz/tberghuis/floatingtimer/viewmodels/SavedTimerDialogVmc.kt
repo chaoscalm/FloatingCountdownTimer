@@ -1,12 +1,14 @@
 package xyz.tberghuis.floatingtimer.viewmodels
 
 import android.app.Application
+import android.content.pm.ShortcutManager
 import android.net.Uri
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.ClipboardManager
 import androidx.compose.ui.text.AnnotatedString
+import androidx.core.content.getSystemService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
@@ -44,6 +46,20 @@ class SavedTimerDialogVmc(
       }
     }
   }
+
+
+  fun add_to_homescreen(savedTimer: SavedTimer, autoStart: Boolean) {
+    val shortcut = savedTimer.toShortcutInfo(application, autoStart)
+    val shortcutManager = application.getSystemService<ShortcutManager>()
+    if (shortcutManager?.isRequestPinShortcutSupported == true) {
+      shortcutManager.requestPinShortcut(
+        shortcut,
+        null
+      )
+    }
+  }
+
+
 }
 
 fun SavedTimer.toDeepLink(start: Boolean): Uri {

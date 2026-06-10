@@ -14,16 +14,6 @@ import xyz.tberghuis.floatingtimer.data.preferencesRepository
 import xyz.tberghuis.floatingtimer.logd
 import xyz.tberghuis.floatingtimer.service.FloatingService
 
-fun add_to_homescreen(context: Context, savedTimer: SavedTimer, autoStart: Boolean) {
-  val shortcut = savedTimer.toShortcutInfo(context, autoStart)
-  val shortcutManager = context.getSystemService<ShortcutManager>()
-  if (shortcutManager?.isRequestPinShortcutSupported == true) {
-    shortcutManager.requestPinShortcut(
-      shortcut,
-      null
-    )
-  }
-}
 
 suspend fun delete_saved_timer(savedTimer: SavedTimer, application: Application) {
   logd("delete_saved_timer")

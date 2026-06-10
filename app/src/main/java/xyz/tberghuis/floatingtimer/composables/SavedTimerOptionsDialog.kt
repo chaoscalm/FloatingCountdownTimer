@@ -30,7 +30,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import xyz.tberghuis.floatingtimer.R
-import xyz.tberghuis.floatingtimer.tmp.tmp02.add_to_homescreen
 import xyz.tberghuis.floatingtimer.viewmodels.SavedTimerDialogVmc
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -87,7 +86,9 @@ fun SavedTimerOptionsDialog(
           }
           IconButton(
             onClick = {
-              add_to_homescreen(context, vmc.showOptionsDialog!!, vmc.start)
+
+              vmc.add_to_homescreen(vmc.showOptionsDialog!!, vmc.start)
+
               vmc.showOptionsDialog = null
             },
           ) {
