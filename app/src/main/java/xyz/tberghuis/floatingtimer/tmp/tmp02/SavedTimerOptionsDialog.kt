@@ -31,6 +31,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import xyz.tberghuis.floatingtimer.R
+import xyz.tberghuis.floatingtimer.viewmodels.SavedTimerDialogVmc
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
