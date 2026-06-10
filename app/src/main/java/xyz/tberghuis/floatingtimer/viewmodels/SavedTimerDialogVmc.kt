@@ -12,11 +12,12 @@ import androidx.core.content.getSystemService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
+import xyz.tberghuis.floatingtimer.R
 import xyz.tberghuis.floatingtimer.data.SavedCountdown
 import xyz.tberghuis.floatingtimer.data.SavedStopwatch
 import xyz.tberghuis.floatingtimer.data.SavedTimer
+import xyz.tberghuis.floatingtimer.data.appDatabase
 import xyz.tberghuis.floatingtimer.logd
-import xyz.tberghuis.floatingtimer.tmp.tmp02.delete_saved_timer
 
 class SavedTimerDialogVmc(
   private val application: Application,
@@ -58,6 +59,28 @@ class SavedTimerDialogVmc(
     }
     showOptionsDialog = null
   }
+
+
+  suspend fun delete_saved_timer(savedTimer: SavedTimer, application: Application) {
+    logd("delete_saved_timer")
+    val shortcutManager = application.getSystemService<ShortcutManager>()
+    val shortcutId = savedTimer.toShortcutId()
+    shortcutManager?.disableShortcuts(
+      listOf(shortcutId),
+      application.getString(R.string.this_timer_has_been_deleted)
+    )
+    when (savedTimer) {
+      is SavedStopwatch -> {
+        application.appDatabase.savedStopwatchDao().delete(savedTimer)
+      }
+
+      is SavedCountdown -> {
+        application.appDatabase.savedCountdownDao().delete(savedTimer)
+      }
+    }
+  }
+
+
 }
 
 fun SavedTimer.toDeepLink(start: Boolean): Uri {
