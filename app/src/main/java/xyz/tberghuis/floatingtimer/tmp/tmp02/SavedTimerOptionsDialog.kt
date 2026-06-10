@@ -65,7 +65,7 @@ fun SavedTimerOptionsDialog(
 //        horizontalAlignment = Alignment.CenterHorizontally,
       ) {
         // todo add to strings.xml
-        Text("Saved Timer Options")
+        Text(stringResource(R.string.saved_timer_options))
 
 
         Row(
