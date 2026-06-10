@@ -1,7 +1,6 @@
 package xyz.tberghuis.floatingtimer.tmp.tmp02
 
 import android.app.Application
-import android.app.ForegroundServiceStartNotAllowedException
 import android.app.Notification
 import android.app.PendingIntent
 import android.app.PendingIntent.FLAG_IMMUTABLE
@@ -15,8 +14,6 @@ import android.os.Binder
 import android.os.Build
 import android.os.IBinder
 import android.util.Log
-import androidx.annotation.RequiresApi
-import androidx.compose.ui.platform.ComposeView
 import androidx.core.app.NotificationCompat
 import com.torrydo.screenez.ScreenEz
 import kotlinx.coroutines.CoroutineScope
@@ -41,14 +38,11 @@ import xyz.tberghuis.floatingtimer.service.ServiceBinder
 // https://stackoverflow.com/questions/76503237/how-to-use-jetpack-compose-in-service
 class FloatingService : Service() {
   private val job = SupervisorJob()
-
   val scope = CoroutineScope(Dispatchers.IO + job)
 
   lateinit var alarmController: FtAlarmController
   lateinit var overlayController: OverlayController
-
   lateinit var ftWindowManager: FtWindowManager
-
 
   private val binder = LocalBinder()
 
@@ -65,9 +59,7 @@ class FloatingService : Service() {
   override fun onCreate() {
     super.onCreate()
     ScreenEz.with(this.applicationContext)
-
     ftWindowManager = FtWindowManager(this)
-
     alarmController = FtAlarmController(this)
     overlayController = OverlayController(this)
     startInForeground()
