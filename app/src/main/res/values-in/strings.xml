@@ -83,4 +83,7 @@
     <string name="stopwatch_timer_launched">pengatur waktu stopwatch diluncurkan</string>
     <string name="countdown_timer_launched">pengatur waktu hitung mundur diluncurkan</string>
     <string name="error_draw_over_other_apps_permission_not_granted">kesalahan, izin menggambar di aplikasi lain tidak diberikan</string>
+    <string name="add_to_home_screen">Tambahkan ke Layar Utama</string>
+    <string name="this_timer_has_been_deleted">Timer ini telah dihapus</string>
+    <string name="saved_timer_options">Opsi Timer Tersimpan</string>
 </resources>

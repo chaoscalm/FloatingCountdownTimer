@@ -83,4 +83,7 @@
     <string name="stopwatch_timer_launched">스톱워치 타이머 실행됨</string>
     <string name="countdown_timer_launched">카운트다운 타이머 실행됨</string>
     <string name="error_draw_over_other_apps_permission_not_granted">오류, 다른 앱 위에 그리기 권한이 부여되지 않았습니다.</string>
+    <string name="add_to_home_screen">홈 화면에 추가</string>
+    <string name="this_timer_has_been_deleted">이 타이머는 삭제되었습니다</string>
+    <string name="saved_timer_options">저장된 타이머 옵션</string>
 </resources>

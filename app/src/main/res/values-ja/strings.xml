@@ -83,4 +83,7 @@
     <string name="stopwatch_timer_launched">ストップウォッチタイマーが起動しました</string>
     <string name="countdown_timer_launched">カウントダウンタイマーが起動しました</string>
     <string name="error_draw_over_other_apps_permission_not_granted">エラー、他のアプリの上に描画する権限が付与されていません</string>
+    <string name="add_to_home_screen">ホーム画面に追加</string>
+    <string name="this_timer_has_been_deleted">このタイマーは削除されました</string>
+    <string name="saved_timer_options">保存済みタイマーのオプション</string>
 </resources>

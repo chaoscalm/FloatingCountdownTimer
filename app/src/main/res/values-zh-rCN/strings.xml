@@ -83,4 +83,7 @@
     <string name="stopwatch_timer_launched">启动了秒表计时器</string>
     <string name="countdown_timer_launched">启动了倒计时计时器</string>
     <string name="error_draw_over_other_apps_permission_not_granted">错误，未授予覆盖其他应用程序的权限</string>
+    <string name="add_to_home_screen">添加到主屏幕</string>
+    <string name="this_timer_has_been_deleted">此定时器已被删除</string>
+    <string name="saved_timer_options">已保存的定时器选项</string>
 </resources>
