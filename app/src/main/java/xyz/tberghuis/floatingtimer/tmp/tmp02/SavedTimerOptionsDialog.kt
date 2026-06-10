@@ -62,14 +62,9 @@ fun SavedTimerOptionsDialog(
           .padding(16.dp)
           .width(IntrinsicSize.Max),
         verticalArrangement = Arrangement.spacedBy(16.dp),
-//        horizontalAlignment = Alignment.CenterHorizontally,
       ) {
-        // todo add to strings.xml
         Text(stringResource(R.string.saved_timer_options))
-
-
         Row(
-//          modifier = Modifier.wid(),
           verticalAlignment = Alignment.CenterVertically,
         ) {
           Checkbox(
@@ -78,10 +73,6 @@ fun SavedTimerOptionsDialog(
           )
           Text(stringResource(R.string.auto_start))
         }
-
-
-
-
         Row(
           modifier = Modifier,
           horizontalArrangement = Arrangement.spacedBy(16.dp),
@@ -93,8 +84,6 @@ fun SavedTimerOptionsDialog(
           ) {
             Icon(Icons.Default.Link, stringResource(R.string.link))
           }
-
-
           IconButton(
             onClick = {
               add_to_homescreen(context, vmc.showOptionsDialog!!, vmc.start)
@@ -103,9 +92,6 @@ fun SavedTimerOptionsDialog(
           ) {
             Icon(Icons.Default.PushPin, stringResource(R.string.add_to_home_screen))
           }
-
-
-
           IconButton(
             onClick = {
               vmc.deleteSavedTimer()
@@ -114,21 +100,16 @@ fun SavedTimerOptionsDialog(
             Icon(Icons.Default.Delete, stringResource(R.string.delete))
           }
         }
-
         Row(
           modifier = Modifier.fillMaxWidth(),
           horizontalArrangement = Arrangement.End,
         ) {
-//          Spacer(modifier = Modifier.weight(1f))
           TextButton(onClick = {
             vmc.showOptionsDialog = null
           }) {
             Text(stringResource(R.string.cancel))
           }
-
         }
-
-
       }
     }
   }
