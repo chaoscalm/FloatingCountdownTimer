@@ -11,13 +11,10 @@ import androidx.compose.ui.graphics.Color
 import kotlinx.coroutines.launch
 import xyz.tberghuis.floatingtimer.R
 import xyz.tberghuis.floatingtimer.data.appDatabase
-import xyz.tberghuis.floatingtimer.service.FloatingService
-import xyz.tberghuis.floatingtimer.tmp.tmp02.display_toast_message
 import xyz.tberghuis.floatingtimer.tmp.tmp02.should_Show_Premium_Dialog_Multiple_Timers
-import xyz.tberghuis.floatingtimer.tmp.tmp02.stop_service_no_timers
 
 fun processDeeplink(data: Uri, fs: FloatingService) {
-  logd("tmp_process_uri data $data")
+  logd("processDeeplink data $data")
 
   val timerType = data.getQueryParameter("type")
   val id = data.getQueryParameter("id")
@@ -101,4 +98,22 @@ private suspend fun addCountdown(id: Int, start: Boolean, fs: FloatingService) {
     savedTimer = countdown,
     start = start
   )
+}
+
+fun display_toast_message(context: Context, message: String) {
+  Handler(Looper.getMainLooper()).post {
+    Toast.makeText(
+      context,
+      message,
+      Toast.LENGTH_LONG
+    ).show()
+  }
+}
+
+fun stop_service_no_timers(fs: FloatingService) {
+  fs.scope.launch {
+    if (fs.overlayController.getNumberOfBubbles() == 0) {
+      fs.stopSelf()
+    }
+  }
 }
