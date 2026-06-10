@@ -11,6 +11,7 @@ import androidx.compose.ui.graphics.Color
 import kotlinx.coroutines.launch
 import xyz.tberghuis.floatingtimer.R
 import xyz.tberghuis.floatingtimer.data.appDatabase
+import xyz.tberghuis.floatingtimer.service.FloatingService
 
 fun tmp_process_uri(data: Uri, fs: FloatingService) {
   logd("tmp_process_uri data $data")

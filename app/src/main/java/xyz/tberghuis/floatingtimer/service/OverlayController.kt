@@ -32,7 +32,7 @@ import xyz.tberghuis.floatingtimer.service.stopwatch.StopwatchView
 import kotlin.math.max
 import kotlin.math.min
 
-class OverlayController(val service: xyz.tberghuis.floatingtimer.tmp.tmp02.FloatingService) {
+class OverlayController(val service: FloatingService) {
   val trashController = TrashController(service)
   private val bubbleSet = mutableSetOf<Bubble>()
   private val unlockReceiver = object : BroadcastReceiver() {

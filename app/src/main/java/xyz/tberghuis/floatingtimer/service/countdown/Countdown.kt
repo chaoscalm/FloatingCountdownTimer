@@ -12,10 +12,11 @@ import kotlinx.coroutines.launch
 import xyz.tberghuis.floatingtimer.data.SavedTimer
 import xyz.tberghuis.floatingtimer.logd
 import xyz.tberghuis.floatingtimer.service.Bubble
+import xyz.tberghuis.floatingtimer.service.FloatingService
 import kotlin.math.roundToInt
 
 class Countdown(
-  private val service: xyz.tberghuis.floatingtimer.tmp.tmp02.FloatingService,
+  private val service: FloatingService,
   val durationSeconds: Int,
   bubbleSizeScaleFactor: Float,
   haloColor: Color,

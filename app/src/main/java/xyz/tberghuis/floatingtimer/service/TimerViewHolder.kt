@@ -20,7 +20,7 @@ import androidx.savedstate.setViewTreeSavedStateRegistryOwner
 import xyz.tberghuis.floatingtimer.logd
 
 class TimerViewHolder(
-  val service: xyz.tberghuis.floatingtimer.tmp.tmp02.FloatingService,
+  val service: FloatingService,
   x: Int? = null,
   y: Int? = null
 ) {
@@ -79,7 +79,7 @@ class FloatingLifecycleOwner : LifecycleOwner, ViewModelStoreOwner, SavedStateRe
 }
 
 // https://stackoverflow.com/questions/76503237/how-to-use-jetpack-compose-in-service
-fun createComposeView(service: xyz.tberghuis.floatingtimer.tmp.tmp02.FloatingService): ComposeView {
+fun createComposeView(service: FloatingService): ComposeView {
   val lifecycleOwner = FloatingLifecycleOwner()
   lifecycleOwner.onCreate()
   lifecycleOwner.onResume()

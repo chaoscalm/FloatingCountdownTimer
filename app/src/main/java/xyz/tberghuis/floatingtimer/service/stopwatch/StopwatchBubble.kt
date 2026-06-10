@@ -8,13 +8,14 @@ import kotlinx.coroutines.launch
 import xyz.tberghuis.floatingtimer.data.SavedTimer
 import xyz.tberghuis.floatingtimer.logd
 import xyz.tberghuis.floatingtimer.service.Bubble
+import xyz.tberghuis.floatingtimer.service.FloatingService
 import java.util.Timer
 import java.util.TimerTask
 import kotlin.concurrent.timerTask
 import kotlin.math.roundToInt
 
 class Stopwatch(
-  service: xyz.tberghuis.floatingtimer.tmp.tmp02.FloatingService,
+  service: FloatingService,
   bubbleSizeScaleFactor: Float,
   haloColor: Color,
   timerShape: String,

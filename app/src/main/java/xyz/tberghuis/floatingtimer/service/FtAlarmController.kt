@@ -24,7 +24,7 @@ import xyz.tberghuis.floatingtimer.service.countdown.Countdown
 import xyz.tberghuis.floatingtimer.util.uriToRingtone
 
 class FtAlarmController(
-  private val floatingService: xyz.tberghuis.floatingtimer.tmp.tmp02.FloatingService
+  private val floatingService: FloatingService
 ) {
   private val prefs = floatingService.application.preferencesRepository
 

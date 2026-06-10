@@ -13,7 +13,7 @@ import xyz.tberghuis.floatingtimer.data.SavedTimer
 import xyz.tberghuis.floatingtimer.data.appDatabase
 
 abstract class Bubble(
-  private val service: xyz.tberghuis.floatingtimer.tmp.tmp02.FloatingService,
+  private val service: FloatingService,
   bubbleSizeScaleFactor: Float,
   override val haloColor: Color,
   override val timerShape: String,

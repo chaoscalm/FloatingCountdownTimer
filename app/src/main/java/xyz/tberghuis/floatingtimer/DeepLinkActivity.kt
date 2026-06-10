@@ -5,7 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
-import xyz.tberghuis.floatingtimer.tmp.tmp02.FloatingService
+import xyz.tberghuis.floatingtimer.service.FloatingService
 
 class DeepLinkActivity : ComponentActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
