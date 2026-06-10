@@ -1,3 +1,6 @@
+v1.50.0    2026-06-10  006-homescreen-widget
+  homescreen pinned shortcuts to start saved timers
+
 v1.49.1    2026-05-30  005-start-foreground
   attempt fix ForegroundServiceStartNotAllowedException
 
