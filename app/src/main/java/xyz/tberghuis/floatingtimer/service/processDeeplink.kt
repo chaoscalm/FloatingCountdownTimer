@@ -21,19 +21,19 @@ fun processDeeplink(data: Uri, fs: FloatingService) {
   val start = data.getBooleanQueryParameter("start", false)
 
   if (!Settings.canDrawOverlays(fs.application)) {
-    display_toast_message(fs, fs.getString(R.string.dialog_enable_overlay_permission))
+    displayToastMessage(fs, fs.getString(R.string.dialog_enable_overlay_permission))
     fs.stopSelf()
     return
   }
   if (timerType == null || id == null) {
-    display_toast_message(fs, "invalid link ${data}")
-    stop_service_no_timers(fs)
+    displayToastMessage(fs, "invalid link $data")
+    stopServiceIfNoTimers(fs)
     return
   }
 
   fs.scope.launch {
     if (should_Show_Premium_Dialog_Multiple_Timers(fs)) {
-      display_toast_message(fs, fs.getString(R.string.premium_reason_multiple_timers))
+      displayToastMessage(fs, fs.getString(R.string.premium_reason_multiple_timers))
       return@launch
     }
 
@@ -48,13 +48,13 @@ fun processDeeplink(data: Uri, fs: FloatingService) {
         }
 
         else -> {
-          display_toast_message(fs, "invalid link ${data}")
-          stop_service_no_timers(fs)
+          displayToastMessage(fs, "invalid link $data")
+          stopServiceIfNoTimers(fs)
         }
       }
     } catch (e: RuntimeException) {
-      display_toast_message(fs, "error ${e}")
-      stop_service_no_timers(fs)
+      displayToastMessage(fs, "error $e")
+      stopServiceIfNoTimers(fs)
     }
   }
 }
@@ -64,8 +64,8 @@ private suspend fun addStopwatch(id: Int, start: Boolean, fs: FloatingService) {
     fs.application.appDatabase.savedStopwatchDao().getById(id)
 
   if (stopwatch == null) {
-    display_toast_message(fs, "saved stopwatch ${id} not found")
-    stop_service_no_timers(fs)
+    displayToastMessage(fs, "saved stopwatch $id not found")
+    stopServiceIfNoTimers(fs)
     return
   }
 
@@ -84,8 +84,8 @@ private suspend fun addCountdown(id: Int, start: Boolean, fs: FloatingService) {
   val countdown = fs.application.appDatabase.savedCountdownDao().getById(id)
 
   if (countdown == null) {
-    display_toast_message(fs, "saved countdown ${id} not found")
-    stop_service_no_timers(fs)
+    displayToastMessage(fs, "saved countdown $id not found")
+    stopServiceIfNoTimers(fs)
     return
   }
 
@@ -100,7 +100,7 @@ private suspend fun addCountdown(id: Int, start: Boolean, fs: FloatingService) {
   )
 }
 
-fun display_toast_message(context: Context, message: String) {
+private fun displayToastMessage(context: Context, message: String) {
   Handler(Looper.getMainLooper()).post {
     Toast.makeText(
       context,
@@ -110,7 +110,7 @@ fun display_toast_message(context: Context, message: String) {
   }
 }
 
-fun stop_service_no_timers(fs: FloatingService) {
+private fun stopServiceIfNoTimers(fs: FloatingService) {
   fs.scope.launch {
     if (fs.overlayController.getNumberOfBubbles() == 0) {
       fs.stopSelf()
