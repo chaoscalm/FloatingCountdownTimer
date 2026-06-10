@@ -12,6 +12,7 @@ suspend fun shouldShowPremiumDialogMultipleTimers(application: Application): Boo
   return shouldShowPremiumDialogMultipleTimers(floatingService)
 }
 
+// this is also called from processDeeplink()
 suspend fun shouldShowPremiumDialogMultipleTimers(fs: FloatingService): Boolean {
   val premiumPurchased =
     fs.application.preferencesRepository.haloColourPurchasedFlow.first()
