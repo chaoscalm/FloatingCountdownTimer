@@ -44,9 +44,3 @@ suspend fun delete_saved_timer(savedTimer: SavedTimer, application: Application)
   }
 }
 
-suspend fun should_Show_Premium_Dialog_Multiple_Timers(fs: FloatingService): Boolean {
-  val premiumPurchased =
-    fs.application.preferencesRepository.haloColourPurchasedFlow.first()
-  val numBubbles = fs.overlayController.getNumberOfBubbles()
-  return !premiumPurchased && numBubbles == 2
-}
