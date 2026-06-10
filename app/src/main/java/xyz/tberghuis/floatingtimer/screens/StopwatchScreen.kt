@@ -25,8 +25,8 @@ import xyz.tberghuis.floatingtimer.composables.CreateStopwatchCard
 import xyz.tberghuis.floatingtimer.composables.FtBottomBar
 import xyz.tberghuis.floatingtimer.composables.FtTopAppBar
 import xyz.tberghuis.floatingtimer.composables.PremiumDialog
+import xyz.tberghuis.floatingtimer.composables.SavedTimerOptionsDialog
 import xyz.tberghuis.floatingtimer.composables.SavedTimersCard
-import xyz.tberghuis.floatingtimer.tmp.tmp02.SavedTimerOptionsDialog
 import xyz.tberghuis.floatingtimer.viewmodels.SharedVm
 import xyz.tberghuis.floatingtimer.viewmodels.StopwatchScreenVm
 
@@ -86,5 +86,4 @@ fun StopwatchScreenContent(
     )
   }
   SavedTimerOptionsDialog(vm.savedTimerDialogVmc)
-//  SavedTimerLinkDialog(vm.savedTimerDialogVmc)
 }

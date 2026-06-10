@@ -26,9 +26,9 @@ import xyz.tberghuis.floatingtimer.composables.CreateCountdownCard
 import xyz.tberghuis.floatingtimer.composables.FtBottomBar
 import xyz.tberghuis.floatingtimer.composables.FtTopAppBar
 import xyz.tberghuis.floatingtimer.composables.PremiumDialog
+import xyz.tberghuis.floatingtimer.composables.SavedTimerOptionsDialog
 import xyz.tberghuis.floatingtimer.composables.SavedTimersCard
 import xyz.tberghuis.floatingtimer.logd
-import xyz.tberghuis.floatingtimer.tmp.tmp02.SavedTimerOptionsDialog
 import xyz.tberghuis.floatingtimer.viewmodels.CountdownScreenVm
 import xyz.tberghuis.floatingtimer.viewmodels.SharedVm
 
@@ -95,5 +95,4 @@ fun CountdownScreenContent(
     )
   }
   SavedTimerOptionsDialog(vm.savedTimerDialogVmc)
-//  SavedTimerLinkDialog(vm.savedTimerDialogVmc)
 }
