@@ -1,5 +1,5 @@
 [versions]
-kotlin = "2.4.0"
+kotlin = "2.4.10"
 agp = "9.3.1"
 # https://github.com/google/ksp/releases
 ksp = "2.3.7"
@@ -8,16 +8,16 @@ coreKtx = "1.19.0"
 junit = "4.13.2"
 junitVersion = "1.3.0"
 espressoCore = "3.7.0"
-lifecycleRuntimeKtx = "2.10.0"
-lifecycleService = "2.10.0"
+lifecycleRuntimeKtx = "2.11.0"
+lifecycleService = "2.11.0"
 activityCompose = "1.13.0"
 # https://developer.android.com/jetpack/compose/bom/bom-mapping
 # 2025.04.01 cause crash, sdk 28, drop timer on trash
-composeBom = "2026.05.01"
+composeBom = "2026.06.01"
 navigationCompose = "2.9.8"
 room = "2.8.4"
 androidxDataStore = "1.2.1"
-ktorVersion = "3.5.0"
+ktorVersion = "3.5.1"
 billingClient = "7.1.1"
 testRules = "1.7.0"
 # manual check versions
