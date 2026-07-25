@@ -16,8 +16,10 @@ import com.android.billingclient.api.PurchasesResponseListener
 import com.android.billingclient.api.PurchasesUpdatedListener
 import com.android.billingclient.api.QueryProductDetailsParams
 import com.android.billingclient.api.QueryPurchasesParams
+import com.android.billingclient.api.queryProductDetails
 import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -25,6 +27,7 @@ import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlinx.coroutines.withContext
 import xyz.tberghuis.floatingtimer.logd
 import kotlin.coroutines.resume
 import kotlin.math.min
@@ -169,12 +172,33 @@ class BillingClientWrapper(
 
   suspend fun getProductDetails(productId: String): ProductDetails? {
     val pdList = getProductDetailsList(productId)
-    return pdList.find {
+    return pdList?.find {
       it.productId == productId
     }
   }
 
-  private suspend fun getProductDetailsList(productId: String): List<ProductDetails> {
+//  private suspend fun getProductDetailsList(productId: String): List<ProductDetails> {
+//    val product = QueryProductDetailsParams.Product.newBuilder()
+//      .setProductId(productId)
+//      .setProductType(BillingClient.ProductType.INAPP)
+//      .build()
+//    val bc = provideBillingClient()
+//    val params = QueryProductDetailsParams.newBuilder()
+//      .setProductList(listOf(product))
+//      .build()
+//    return suspendCancellableCoroutine { cont ->
+//      logd("suspendCancellableCoroutine")
+//      val productDetailsResponseListener =
+//        ProductDetailsResponseListener { billingResult, productDetailsList ->
+//          if (cont.isActive) {
+//            cont.resume(productDetailsList)
+//          }
+//        }
+//      bc.queryProductDetailsAsync(params, productDetailsResponseListener)
+//    }
+//  }
+
+  private suspend fun getProductDetailsList(productId: String): List<ProductDetails>? {
     val product = QueryProductDetailsParams.Product.newBuilder()
       .setProductId(productId)
       .setProductType(BillingClient.ProductType.INAPP)
@@ -183,17 +207,12 @@ class BillingClientWrapper(
     val params = QueryProductDetailsParams.newBuilder()
       .setProductList(listOf(product))
       .build()
-    return suspendCancellableCoroutine { cont ->
-      logd("suspendCancellableCoroutine")
-      val productDetailsResponseListener =
-        ProductDetailsResponseListener { billingResult, productDetailsList ->
-          if (cont.isActive) {
-            cont.resume(productDetailsList)
-          }
-        }
-      bc.queryProductDetailsAsync(params, productDetailsResponseListener)
+    val productDetailsResult = withContext(Dispatchers.IO) {
+      bc.queryProductDetails(params)
     }
+    return productDetailsResult.productDetailsList
   }
+
 
   companion object {
     @Volatile

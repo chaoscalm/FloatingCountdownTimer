@@ -18,7 +18,7 @@ navigationCompose = "2.9.8"
 room = "2.8.4"
 androidxDataStore = "1.2.1"
 ktorVersion = "3.5.1"
-billingClient = "7.1.1"
+billingClient = "9.1.0"
 testRules = "1.7.0"
 # manual check versions
 accompanist = "0.37.3"
