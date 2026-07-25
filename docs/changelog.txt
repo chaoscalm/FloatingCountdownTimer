@@ -1,3 +1,6 @@
+v1.51.0    2026-07-26  007-billingclient
+  update billing client to version 9.1.0, targetSdk 36
+
 v1.50.0    2026-06-10  006-homescreen-widget
   homescreen pinned shortcuts to start saved timers
 
