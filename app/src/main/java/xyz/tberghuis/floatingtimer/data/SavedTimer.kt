@@ -45,6 +45,7 @@ interface SavedTimer {
         }
 
         is SavedStopwatch -> {
+          // todo use strings.xml for 'Stopwatch' if any complaints
           if (label != null) {
             append("$label - Stopwatch")
           } else {
