@@ -3,6 +3,7 @@ package xyz.tberghuis.floatingtimer.data
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ShortcutInfo
+import android.graphics.BitmapFactory
 import android.graphics.drawable.Icon
 import androidx.core.net.toUri
 import xyz.tberghuis.floatingtimer.R
@@ -56,9 +57,8 @@ interface SavedTimer {
     val shortcut = ShortcutInfo.Builder(context, toShortcutId())
       .setShortLabel(_label)
       .setLongLabel(_label)
-      .setIcon(Icon.createWithResource(context, R.drawable.ic_launcher_foreground))
+      .setIcon(Icon.createWithResource(context, R.mipmap.ic_launcher2))
       .setIntent(
-//      intent
         Intent(
           Intent.ACTION_VIEW,
           savedTimer.toDeepLink(autoStart)
